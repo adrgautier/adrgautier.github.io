@@ -1,0 +1,25 @@
+{
+  "name": "adrgautier.github.io",
+  "description": "Personnal website built for GitHub Pages",
+  "license": "MIT",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "format": "prettier --write src/**/*.js src/**/*.jsx",
+    "deploy": "gatsby build && gh-pages -d public -b master"
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.8.0",
+    "gatsby": "^2.0.0",
+    "gatsby-plugin-react-helmet": "^3.0.1",
+    "gatsby-plugin-styled-components": "^3.0.1",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-helmet": "^5.2.0",
+    "styled-components": "^4.0.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}
