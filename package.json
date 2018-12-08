@@ -7,7 +7,7 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "format": "prettier --write src/**/*.js src/**/*.jsx",
-    "deploy": "gatsby build && gh-pages -d public -b master"
+    "deploy": "gatsby build && cp ./src/public ./ -a && gh-pages -d public -b master"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.8.0",
