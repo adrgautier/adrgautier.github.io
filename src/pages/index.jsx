@@ -30,6 +30,8 @@ export default class HomePage extends PureComponent {
     return (
       <>
         <Helmet>
+          <html lang="en" />
+          <title>Adrien Gautier - Welcome</title>
           <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.css"

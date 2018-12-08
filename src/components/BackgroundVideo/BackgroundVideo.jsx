@@ -8,7 +8,8 @@ const Wrapper = styled.div`
 
 const Video = styled.video.attrs({
   autoPlay: true,
-  loop: true
+  loop: true,
+  muted: true
 })`
   position: absolute;
   left: 0;
@@ -22,6 +23,7 @@ const Video = styled.video.attrs({
 `;
 
 export default class BackgroundVideo extends PureComponent {
+
   render() {
     const { src, ...props } = this.props;
 
