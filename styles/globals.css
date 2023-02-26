@@ -1,0 +1,112 @@
+:root {
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 62.5%;
+
+}
+
+body {
+    margin: 0;
+    background: black;
+}
+
+#__next {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    font-size: 2.5rem;
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 8rem;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+ul {
+    padding: 0;
+    padding-left: 2.5rem;
+}
+
+li {
+    padding-left: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+time {
+    font-size: 2rem;
+}
+
+
+a {
+    color: inherit;
+}
+
+a:not(:hover) {
+    text-decoration: none;
+}
+
+.text-gradient {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: var(--gradient);
+}
+
+.gradient2 {
+    --gradient: linear-gradient(
+            90deg,
+            hsl(240deg 100% 51%) 0%,
+            hsl(256deg 100% 53%) 33%,
+            hsl(271deg 100% 55%) 67%,
+            hsl(287deg 100% 57%) 100%
+    );
+}
+
+.gradient1 {
+    --gradient: linear-gradient(
+            90deg,
+            hsl(123deg 70% 63%) 0%,
+            hsl(149deg 80% 55%) 25%,
+            hsl(164deg 100% 47%) 43%,
+            hsl(171deg 100% 48%) 58%,
+            hsl(177deg 100% 48%) 73%,
+            hsl(182deg 100% 51%) 96%
+    );
+}
+
+.gradient3 {
+    --gradient: linear-gradient(
+            270deg,
+            hsl(219deg 100% 52%) 0%,
+            hsl(208deg 100% 50%) 25%,
+            hsl(200deg 100% 50%) 43%,
+            hsl(193deg 100% 50%) 58%,
+            hsl(187deg 100% 50%) 73%,
+            hsl(182deg 100% 51%) 96%
+    );
+}
+
+.section {
+    padding: 0 20px;
+    margin: 10rem 0;
+
+}
+@media screen and (min-width: 720px) {
+    .section {
+        padding: 0 calc(calc(100vw - 680px) / 2);
+    }
+}
