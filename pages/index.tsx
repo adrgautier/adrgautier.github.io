@@ -3,10 +3,10 @@ import Image from 'next/image'
 import Link from "next/link";
 import axios from "axios";
 import classNames from "classnames/bind";
-import {formatDistance} from 'date-fns'
 import Logo from "@/components/Logo";
 import styles from "@/styles/main.module.css";
 import {FeedItem, feedSchema} from "@/schemas/inoreader";
+import heroBg from "@/images/hero.png";
 
 const cx = classNames.bind(styles);
 
@@ -23,12 +23,11 @@ export default function Home({latestReadings}: HomePageProps) {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
                 <link rel="preconnect" href="https://fonts.bunny.net"/>
-                <link href="https://fonts.bunny.net/css?family=outfit:300,600,900" rel="stylesheet"/>
+                <link href="https://fonts.bunny.net/css?family=outfit:300,600,900&display=swap" rel="stylesheet"/>
             </Head>
             <main>
                 <div className={cx('hero')}>
-                    <Image className={cx('heroBg')} src={'/img/hero.png'} alt="" width={1024} height={1024}
-                           quality={0}/>
+                    <Image className={cx('heroBg')} src={heroBg} alt="" width={1024} height={1024} placeholder={"blur"} quality={70}/>
                     <Logo/>
                     <div className={cx('heroGradient')}/>
                 </div>
@@ -49,7 +48,7 @@ export default function Home({latestReadings}: HomePageProps) {
                         <li key={reading.url}>
                             <Link href={reading.url}>{reading.title}</Link>&nbsp;-&nbsp;
                             <time
-                                dateTime={reading.date_published}>{formatDistance(new Date(reading.date_published), new Date(), {addSuffix: true})}</time>
+                                dateTime={reading.date_published}>{reading.date_formated}</time>
                         </li>
                     ))}</ul>
                 </div>
