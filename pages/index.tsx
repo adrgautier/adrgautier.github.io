@@ -7,6 +7,9 @@ import Logo from "@/components/Logo";
 import styles from "@/styles/main.module.css";
 import {FeedItem, feedSchema} from "@/schemas/inoreader";
 import heroBg from "@/images/hero.jpg";
+import { collection, getDocs, query, where, or} from "firebase/firestore"; 
+import gameTrackDB from '@/data/gameTrack';
+import getGameTrackUserId from '@/helpers/getGameTrackUserId';
 
 const cx = classNames.bind(styles);
 
@@ -65,9 +68,21 @@ export async function getStaticProps() {
     const response = await axios.get("https://www.inoreader.com/stream/user/1005545242/tag/user-broadcasted/view/json");
     const feed = feedSchema.parse(response.data);
 
+    const gamesCollection = collection(gameTrackDB, `users/${getGameTrackUserId()}/lists/HuURE4djtumtm2GzXS8d/games`);
+    const gamesQuery = query(gamesCollection, or(where("status", "==", "A Now Playing"), where("status", "==", "Finished"), where("status", "==", "Completed"), where("status", "==", "Abandoned")));
+    const games = await getDocs(gamesQuery);
+
+    console.log(games.size);
+
+    games.forEach(game => {
+        const data = game.data();
+        console.log(data.title, data.status);
+    });
+
     return {
         props: {
-            latestReadings: feed.items
+            latestReadings: feed.items,
+            // playing,
         }
     }
 }
