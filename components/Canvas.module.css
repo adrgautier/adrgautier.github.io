@@ -1,0 +1,229 @@
+
+.wrapper {
+    position: absolute;
+    left: var(--left);
+    top: var(--top);
+    width: var(--size); 
+    height: var(--size);
+    transition: transform .3s;
+}
+
+.tile {
+    width: var(--size); 
+    height: var(--size);
+    position: absolute;
+    background-color: #000;
+    --perspective-intensity: .3;
+    --absolute-x-transform-origin: calc(calc(960 / 1920 * 100vw) - var(--left));
+    --absolute-y-transform-origin: calc(calc(540 / 1920 * 100vw) - var(--top)); 
+    --compensated-x-transform-origin: calc(var(--size) / 2 + calc(calc(var(--absolute-x-transform-origin) - var(--size) / 2)) * var(--perspective-intensity));
+    --compensated-y-transform-origin: calc(var(--size) / 2 + calc(calc(var(--absolute-y-transform-origin) - var(--size) / 2)) * var(--perspective-intensity));
+    transform-origin: var(--compensated-x-transform-origin) var(--compensated-y-transform-origin);
+    animation: infinite both var(--rythm) scale ease-in-out;
+    animation-delay: var(--rythm-delay);
+    border-radius: 1vw;
+    overflow: hidden;
+   
+}
+
+.tile > img {
+    position: absolute;
+    transform: translate(-1%, -1%);
+    width: 102%;
+    object-fit: cover;
+}
+
+.bg .tile {
+    border-radius: 100%;
+    transform: scale(1.1) !important;
+    filter: blur(3vw) saturate(5) contrast(1) brightness(.6);
+}
+
+:not(.bg)>.wrapper:hover {
+    transform: scale(1.1);
+}
+
+.canvas {
+    position: relative;
+    height: calc( 100vw / 16 * 9);
+    width:  100vw;
+    transform: scale(calc(1920 /  100vw));
+    perspective: 50vw;
+    background-color: black;
+}
+
+.main { 
+    --left: calc(830 / 1920 * 100vw);
+    --top: calc(344 / 1920 * 100vw); 
+    --size: calc(320 / 1920 * 100vw);
+    --rythm: 50s;
+    --rythm-delay: -5s; 
+}
+
+.big1 { 
+    --left: calc(334 / 1920 * 100vw);
+    --top: calc(240 / 1920 * 100vw);
+    --size: calc(220 / 1920 * 100vw);
+    --rythm: 30s;
+    --rythm-delay: -10s; 
+}
+
+.big2 { 
+    --left: calc(1362 / 1920 * 100vw);
+    --top: calc(68 / 1920 * 100vw);
+    --size: calc(220 / 1920 * 100vw);
+    --rythm: 40s;
+    --rythm-delay: -25s; 
+}
+
+.big3 { 
+    --left: calc(1236 / 1920 * 100vw);
+    --top: calc(714 / 1920 * 100vw);
+    --size: calc(220 / 1920 * 100vw);
+    --rythm: 40s;
+    --rythm-delay: -10s; 
+}
+
+.big4 { 
+    --left: calc(540 / 1920 * 100vw);
+    --top: calc(726 / 1920 * 100vw);
+    --size: calc(220 / 1920 * 100vw);
+    --rythm: 20s;
+    --rythm-delay: 25s; 
+}
+
+.med1 { 
+    --left: calc(624 / 1920 * 100vw);
+    --top: calc(343 / 1920 * 100vw);
+    --size: calc(160 / 1920 * 100vw);
+    --rythm: 40s;
+    --rythm-delay: 15s; 
+}
+
+.med2 { 
+    --left: calc(805 / 1920 * 100vw);
+    --top: calc(748 / 1920 * 100vw);
+    --size: calc(160 / 1920 * 100vw);
+    --rythm: 45s;
+    --rythm-delay: -25s; 
+}
+
+.med3 { 
+    --left: calc(1408 / 1920 * 100vw);
+    --top: calc(356 / 1920 * 100vw);
+    --size: calc(160 / 1920 * 100vw);
+    --rythm: 45s;
+    --rythm-delay: -5s; 
+}
+
+.med4 { 
+    --left: calc(1206 / 1920 * 100vw);
+    --top: calc(504 / 1920 * 100vw);
+    --size: calc(160 / 1920 * 100vw);
+    --rythm: 35s;
+    --rythm-delay: -20s; 
+}
+
+.med5 { 
+    --left: calc(427 / 1920 * 100vw);
+    --top: calc(529 / 1920 * 100vw);
+    --size: calc(160 / 1920 * 100vw);
+    --rythm: 35s;
+    --rythm-delay: -15s; 
+}
+
+.med6 { 
+    --left: calc(1131 / 1920 * 100vw);
+    --top: calc(145 / 1920 * 100vw);
+    --size: calc(160 / 1920 * 100vw);
+    --rythm: 35s;
+    --rythm-delay: -10s; 
+}
+
+.med7 { 
+    --left: calc(759 / 1920 * 100vw);
+    --top: calc(127 / 1920 * 100vw);
+    --size: calc(160 / 1920 * 100vw);
+    --rythm: 45s;
+    --rythm-delay: -15s; 
+}
+
+.med8 { 
+    --left: calc(1030 / 1920 * 100vw);
+    --top: calc(869 / 1920 * 100vw);
+    --size: calc(160 / 1920 * 100vw);
+    --rythm: 50s;
+    --rythm-delay: -25s; 
+}
+
+.sml1 { 
+    --left: calc(635 / 1920 * 100vw);
+    --top: calc(556 / 1920 * 100vw);
+    --size: calc(105 / 1920 * 100vw);
+    --rythm: 25s;
+    --rythm-delay: -5s; 
+}
+
+.sml2 { 
+    --left: calc(1225 / 1920 * 100vw);
+    --top: calc(351 / 1920 * 100vw);
+    --size: calc(105 / 1920 * 100vw);
+    --rythm: 25s;
+    --rythm-delay: -10s; 
+}
+
+.sml3 { 
+    --left: calc(1415 / 1920 * 100vw);
+    --top: calc(570 / 1920 * 100vw);
+    --size: calc(105 / 1920 * 100vw);
+    --rythm: 30s;
+    --rythm-delay: -15s; 
+}
+
+.sml4 { 
+    --left: calc(960 / 1920 * 100vw);
+    --top: calc(145 / 1920 * 100vw);
+    --size: calc(105 / 1920 * 100vw);
+    --rythm: 30s;
+    --rythm-delay: -20s; 
+}
+
+.sml5 { 
+    --left: calc(602 / 1920 * 100vw);
+    --top: calc(190 / 1920 * 100vw);
+    --size: calc(105 / 1920 * 100vw);
+    --rythm: 40s;
+    --rythm-delay: -20s; 
+}
+
+.sml6 { 
+    --left: calc(1031 / 1920 * 100vw);
+    --top: calc(714 / 1920 * 100vw);
+    --size: calc(105 / 1920 * 100vw);
+    --rythm: 40s;
+    --rythm-delay: -25s; 
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1.1);
+    }
+    20% {
+        transform: scale(1.1);
+    }
+    45% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(1.1);
+    }
+    95% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}

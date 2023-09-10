@@ -10,14 +10,17 @@ import heroBg from "@/images/hero.jpg";
 import { collection, getDocs, query, where, or} from "firebase/firestore"; 
 import gameTrackDB from '@/data/gameTrack';
 import getGameTrackUserId from '@/helpers/getGameTrackUserId';
+import Canvas from '@/components/Canvas';
+import { Game, gameSchema } from '@/schemas/gametrack';
 
 const cx = classNames.bind(styles);
 
 interface HomePageProps {
     latestReadings: FeedItem[]
+    games: Game[]
 }
 
-export default function Home({latestReadings}: HomePageProps) {
+export default function Home({latestReadings, games}: HomePageProps) {
     return (
         <>
             <Head>
@@ -55,6 +58,7 @@ export default function Home({latestReadings}: HomePageProps) {
                         </li>
                     ))}</ul>
                 </div>
+                <Canvas games={games} />
             </main>
             <footer>
                 Made with <Link href="https://nextjs.org">Next</Link> — Illustrations made with <Link
@@ -64,25 +68,32 @@ export default function Home({latestReadings}: HomePageProps) {
     )
 }
 
+
 export async function getStaticProps() {
     const response = await axios.get("https://www.inoreader.com/stream/user/1005545242/tag/user-broadcasted/view/json");
     const feed = feedSchema.parse(response.data);
 
     const gamesCollection = collection(gameTrackDB, `users/${getGameTrackUserId()}/lists/HuURE4djtumtm2GzXS8d/games`);
-    const gamesQuery = query(gamesCollection, or(where("status", "==", "A Now Playing"), where("status", "==", "Finished"), where("status", "==", "Completed"), where("status", "==", "Abandoned")));
-    const games = await getDocs(gamesQuery);
+    const gamesQuery = query(gamesCollection/*, or(where("status", "==", "A Now Playing"), where("status", "==", "Finished"), where("status", "==", "Completed"), where("status", "==", "Abandoned"))*/);
+    const gamesDocs = await getDocs(gamesQuery);
 
-    console.log(games.size);
 
-    games.forEach(game => {
-        const data = game.data();
-        console.log(data.title, data.status);
+    let games: Game[] = []
+
+    gamesDocs.forEach(doc => {
+        const data = doc.data();
+
+        const result = gameSchema.safeParse(data);
+
+        if(result.success) {
+            games.push(result.data);
+        }
     });
 
     return {
         props: {
             latestReadings: feed.items,
-            // playing,
+            games
         }
     }
 }
