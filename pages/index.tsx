@@ -11,7 +11,7 @@ import { collection, getDocs, query, where, or} from "firebase/firestore";
 import gameTrackDB from '@/data/gameTrack';
 import getGameTrackUserId from '@/helpers/getGameTrackUserId';
 import Canvas from '@/components/Canvas';
-import { Game, gameSchema } from '@/schemas/gametrack';
+import { Game, GameState, Status, gameSchema } from '@/schemas/gametrack';
 
 const cx = classNames.bind(styles);
 
@@ -68,27 +68,52 @@ export default function Home({latestReadings, games}: HomePageProps) {
     )
 }
 
+const SERVICE_LIST = 'HuURE4djtumtm2GzXS8d';
+const COLLECTION_LIST = '3vjOzfDNeUWSLjULX7UU';
+
 
 export async function getStaticProps() {
-    const response = await axios.get("https://www.inoreader.com/stream/user/1005545242/tag/user-broadcasted/view/json");
-    const feed = feedSchema.parse(response.data);
+    //const response = await axios.get("https://www.inoreader.com/stream/user/1005545242/tag/user-broadcasted/view/json");
+    //const feed = feedSchema.parse(response.data);
+    const feed = { items: [] };
 
-    const gamesCollection = collection(gameTrackDB, `users/${getGameTrackUserId()}/lists/HuURE4djtumtm2GzXS8d/games`);
-    const gamesQuery = query(gamesCollection/*, or(where("status", "==", "A Now Playing"), where("status", "==", "Finished"), where("status", "==", "Completed"), where("status", "==", "Abandoned"))*/);
-    const gamesDocs = await getDocs(gamesQuery);
+    const collectionGamesCollection = collection(gameTrackDB, `users/${getGameTrackUserId()}/lists/${COLLECTION_LIST}/games`);
+    const collectionGamesQuery = query(collectionGamesCollection, or(where("status", "==", Status.Playing), where("status", "==", Status.Completed), where("status", "==", Status.Finished), where("gameState", "==", GameState.Done), where("gameState", "==", GameState.Playing)));
+    const collectionGamesDocs = await getDocs(collectionGamesQuery);
+
+    const serviceGamesCollection = collection(gameTrackDB, `users/${getGameTrackUserId()}/lists/${SERVICE_LIST}/games`);
+    const serviceGamesQuery = query(serviceGamesCollection, or(where("status", "==", Status.Playing), where("status", "==", Status.Completed), where("status", "==", Status.Finished), where("gameState", "==", GameState.Done), where("gameState", "==", GameState.Playing)));
+    const serviceGamesDocs = await getDocs(serviceGamesQuery);
 
 
     let games: Game[] = []
 
-    gamesDocs.forEach(doc => {
+    collectionGamesDocs.forEach(doc => {
         const data = doc.data();
 
         const result = gameSchema.safeParse(data);
 
-        if(result.success) {
+        if(result.success) {      
             games.push(result.data);
         }
     });
+
+    serviceGamesDocs.forEach(doc => {
+        const data = doc.data();
+
+        const result = gameSchema.safeParse(data);
+
+        if(result.success) {      
+            games.push(result.data);
+        }
+    });
+
+    games.sort((a, b) => {
+        return a.releaseDate.seconds > b.releaseDate.seconds ? -1 : 1;
+
+    });
+
+    console.log(games.map(({title, releaseYear}) => [title, releaseYear]))
 
     return {
         props: {

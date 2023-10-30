@@ -43,8 +43,17 @@ export default function Canvas({ games }: CanvasProps) {
   });
 
   return (
-    <div className={cx("canvas")}>
-      <div className={cx("bg")}>
+    <div className={cx("section")}>
+      <div className={cx("canvas")}>
+        <div className={cx("bg")}>
+          {tiles.map((tile) => (
+            <div className={cx("wrapper", tile.tileName)}>
+              <div className={cx("tile")} title={tile.title}>
+                <img src={tile.imageUrl} alt={tile.alt} />
+              </div>
+            </div>
+          ))}
+        </div>
         {tiles.map((tile) => (
           <div className={cx("wrapper", tile.tileName)}>
             <div className={cx("tile")} title={tile.title}>
@@ -52,14 +61,8 @@ export default function Canvas({ games }: CanvasProps) {
             </div>
           </div>
         ))}
+        <div className={cx("shutter")} />
       </div>
-      {tiles.map((tile) => (
-        <div className={cx("wrapper", tile.tileName)}>
-          <div className={cx("tile")} title={tile.title}>
-            <img src={tile.imageUrl} alt={tile.alt} />
-          </div>
-        </div>
-      ))}
     </div>
   );
 }
