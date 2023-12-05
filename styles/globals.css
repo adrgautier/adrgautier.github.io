@@ -66,16 +66,6 @@ a:not(:hover) {
     background-image: var(--gradient);
 }
 
-.gradient2 {
-    --gradient: linear-gradient(
-            90deg,
-            hsl(240deg 100% 51%) 0%,
-            hsl(256deg 100% 53%) 33%,
-            hsl(271deg 100% 55%) 67%,
-            hsl(287deg 100% 57%) 100%
-    );
-}
-
 .gradient1 {
     --gradient: linear-gradient(
             90deg,
@@ -88,6 +78,15 @@ a:not(:hover) {
     );
 }
 
+.gradient2 {
+    --gradient: linear-gradient(
+            90deg,
+            hsl(279deg 100% 66%) 0%,
+            hsl(224deg 100% 70%) 50%,
+            hsl(169deg 100% 74%) 100%
+    );
+}
+
 .gradient3 {
     --gradient: linear-gradient(
             270deg,
@@ -97,6 +96,15 @@ a:not(:hover) {
             hsl(193deg 100% 50%) 58%,
             hsl(187deg 100% 50%) 73%,
             hsl(182deg 100% 51%) 96%
+    );
+}
+
+.gradient4 {
+    --gradient: linear-gradient(
+        270deg,
+        hsl(68deg 100% 66%) 0%,
+        hsl(118deg 100% 70%) 50%,
+        hsl(169deg 100% 74%) 100%
     );
 }
 

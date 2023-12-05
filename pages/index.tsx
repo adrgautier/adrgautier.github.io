@@ -39,9 +39,12 @@ export default function Home({latestReadings}: HomePageProps) {
                         className={cx('text-gradient', 'gradient2')}
                         href="https://github.com/adrgautier">GitHub</Link> or read my articles on <Link
                         className={cx('text-gradient', 'gradient3')}
-                        href="https://blog.adrgautier.co">Hashnode</Link>.
+                        href="https://blog.adrgautier.co">Hashnode</Link> and <Link
+                        className={cx('text-gradient', 'gradient4')}
+                        href="https://medium.com/@adrgautier">Medium</Link>.
                     </p>
                 </div>
+                {/*
                 <div className={cx('section', 'readings')}>
                     <h2>My latest readings</h2>
                     <ul>{latestReadings.slice(0, 5).map((reading) => (
@@ -51,7 +54,7 @@ export default function Home({latestReadings}: HomePageProps) {
                                 dateTime={reading.date_published}>{reading.date_formated}</time>
                         </li>
                     ))}</ul>
-                </div>
+                    </div>*/}
             </main>
             <footer>
                 Made with <Link href="https://nextjs.org">Next</Link> — Illustrations made with <Link
@@ -67,7 +70,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            latestReadings: feed.items
+            /*latestReadings: feed.items*/
         }
     }
 }
