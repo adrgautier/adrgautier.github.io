@@ -8,6 +8,9 @@
 body {
     margin: 0;
     background: black;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 #__next {
@@ -22,17 +25,20 @@ main {
 }
 
 footer {
+    margin-top: 2rem;
     text-align: center;
     font-size: 1.5rem;
     padding: 10px;
 }
 
 h1 {
+    margin-top: 0;
     font-weight: 300;
     font-size: 8rem;
 }
 
 h2 {
+    margin-top: 0;
     font-weight: 600;
     font-size: 3rem;
 }
@@ -61,6 +67,7 @@ a:not(:hover) {
 }
 
 .text-gradient {
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-image: var(--gradient);
@@ -106,15 +113,4 @@ a:not(:hover) {
         hsl(118deg 100% 70%) 50%,
         hsl(169deg 100% 74%) 100%
     );
-}
-
-.section {
-    padding: 0 20px;
-    margin: 10rem 0;
-
-}
-@media screen and (min-width: 720px) {
-    .section {
-        padding: 0 calc(calc(100vw - 680px) / 2);
-    }
 }

@@ -1,0 +1,48 @@
+.hero {
+    position: relative;
+    background: black;
+    height: 600px;
+    overflow: hidden;
+}
+
+.heroBg {
+    position: absolute;
+    width: 105vw;
+    height: 120vw;
+    min-height: calc(600px * 1.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -42%);
+    filter: blur(15px);
+    object-fit: cover;
+}
+
+.heroGradient {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse, rgba(0, 0, 0 ,0%) 0%, rgba(0, 0, 0, 0.3) 50%,rgb(0, 0, 0) 100%);
+}
+
+.heroOverlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    mix-blend-mode: overlay;
+}
+
+.resume {
+    position: relative;
+    padding: 0 20px;
+    margin-top: clamp(-8rem, -24rem + 26.667vw, 0rem);
+}
+@media screen and (min-width: 720px) {
+    .resume {
+        padding: 0 calc(calc(100vw - 680px) / 2);
+    }
+}

@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import classNames from "classnames/bind";
+import Logo from "./Logo.astro";
+import heroBg from "../images/hero.jpg";
+import styles from "./Main.module.css";
+
+const cx = classNames.bind(styles);
+---
+
+<main>
+    <div class={cx('hero')}>
+        <Image class={cx('heroBg')} src={heroBg} alt="" quality="low" />
+        <div class={cx('heroGradient')}/>
+        <div class={cx('heroOverlay')}/>
+        <Logo />
+    </div>
+    <div class={cx('resume')}>
+        <h1>Hello 👋</h1>
+        <p>I'm Adrien, a <strong class={cx('text-gradient gradient1')}>front-end</strong> web engineer
+            based in Bordeaux.</p>
+        <p>Please take a look at some of my work on <a
+            class={cx('text-gradient', 'gradient2')}
+            href="https://github.com/adrgautier">GitHub</a> or read my articles on <a
+            class={cx('text-gradient', 'gradient3')}
+            href="https://blog.adrgautier.co">Hashnode</a> and <a
+            class={cx('text-gradient', 'gradient4')}
+            href="https://medium.com/@adrgautier">Medium</a>.
+        </p>
+    </div>
+</main>
